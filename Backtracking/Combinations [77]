@@ -1,0 +1,24 @@
+//Time Complexity : O(2^N)
+//Space Complexity : O(N)
+
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> list=new ArrayList<>();
+        List<Integer> nums=new ArrayList<>();
+        generate(n,k,nums,list);
+        return list;
+    }
+    static void generate(int n,int k,List<Integer> nums,List<List<Integer>> list)
+    {
+        if(n==0)
+        {
+            if(k==0)
+            list.add(new ArrayList<>(nums));
+            return;
+        }
+        nums.add(n);
+        generate(n-1,k-1,nums,list);
+        nums.remove(nums.size()-1);
+        generate(n-1,k,nums,list);
+    }
+}
